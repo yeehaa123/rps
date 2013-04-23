@@ -3,19 +3,20 @@ require 'rspec'
 require 'rack/test'
 require 'pry'
 require './rps_game'
-
+require 'capybara'
 get '/' do
   @title = "rock, paper, scissors"
+  @output = Game.new.start("rock")
   if params[:guess]
     erb "Scissors"
   else
-    erb :home
+    erb :result
   end
 end
 
 set :environment, :test
 
-describe 'Rock Paper Scissors App' do
+describe 'Rock Paper Scissors App', :type => :feature do
   include Rack::Test::Methods
 
   def app
@@ -28,9 +29,10 @@ describe 'Rock Paper Scissors App' do
     last_response.body.should include "welcome to rock, paper, scissors"
   end
 
-  it "when I say Rock it should respond with scissors" do
+  it "when I say rock it should respond with either win, lose, or draw" do
     get '/', guess: "Rock"
     last_response.body.should include "Scissors"
+    page.should have_selector('h1', text: "win")
   end
 end
 
@@ -52,3 +54,6 @@ __END__
   <%= yield %>
 </body>
 </html>
+
+@@result
+<h1><%= @output %></h1>
