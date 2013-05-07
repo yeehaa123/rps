@@ -1,9 +1,15 @@
-class Game
+GameValue = Struct.new(:name, :index) do
+	include Enumerable
+end
 
+class Game
   attr_reader :game_values
 
   def initialize
     @game_values = %w{rock paper scissors}
+		@game_values.map!.with_index do |gv, i|
+			GameValue.new(gv, i)
+		end
   end
 
 	def mock_me
@@ -11,7 +17,7 @@ class Game
 	end
 
 	def title
-		"rock, paper, scissors"
+		"rock, paper, scissor"
 	end
 
   def start(user_guess)
@@ -25,6 +31,27 @@ class Game
   def computer_guess
     game_values.sample
   end
+
+	def determine_value input
+		@game_values.find_index { |gv| gv.name == input }
+	end
+
+	def better_picker(user_guess, computer_guess)
+		c = determine_value computer_guess
+		u = determine_value user_guess
+		2 > 1 > 0 > 2
+		if c > u
+			-1
+		elsif c == u
+			0
+		elsif c < u
+			if u == 2 && c == 0
+				-1
+			else
+				1
+			end
+		end
+	end
 
   def choose_winner(user_guess, computer_guess)
     output = case user_guess

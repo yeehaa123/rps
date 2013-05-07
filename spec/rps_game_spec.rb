@@ -53,4 +53,49 @@ describe Game do
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
     @game.choose_winner("scissors", "scissors").should include "noone wins"
   end
+
+	describe "#determine_value in array" do
+		describe "should return value of input in array" do
+			it "should return 0 if input is rock" do
+				input = "rock"
+				@game.determine_value(input).should == 0
+			end
+
+			it "should return 1 if input is paper" do
+				input = "paper"
+				@game.determine_value(input).should == 1
+			end
+
+			it "should return 2 if input is paper" do
+				input = "scissors"
+				@game.determine_value(input).should == 2
+			end
+		end
+	end
+
+	describe "#better_picker" do
+		it "should return 1" do
+			user_input = "paper"
+			computer_input = "rock"
+			@game.better_picker(user_input, computer_input).should == 1
+		end
+		
+		it "should return 0" do
+			user_input = "paper"
+			computer_input = "paper"
+			@game.better_picker(user_input, computer_input).should == 0
+		end
+		
+		it "should return -1" do
+			user_input = "scissors"
+			computer_input = "rock"
+			@game.better_picker(user_input, computer_input).should == -1
+		end
+
+		it "should return -1" do
+			user_input = "rock"
+			computer_input = "scissors"
+			@game.better_picker(user_input, computer_input).should == 1
+		end
+	end
 end
