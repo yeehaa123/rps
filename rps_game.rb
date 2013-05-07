@@ -6,6 +6,14 @@ class Game
     @game_values = %w{rock paper scissors}
   end
 
+	def mock_me
+		"You Lose"
+	end
+
+	def title
+		"rock, paper, scissors"
+	end
+
   def start(user_guess)
     if game_values.include? user_guess
       choose_winner(user_guess, computer_guess)
@@ -19,7 +27,7 @@ class Game
   end
 
   def choose_winner(user_guess, computer_guess)
-    case user_guess
+    output = case user_guess
     when computer_guess then "noone wins"
     when "rock"
       case computer_guess
@@ -37,5 +45,6 @@ class Game
       when "paper" then "user wins"
       end
     end
+		"user guesses #{user_guess}, computer guesses #{computer_guess}, #{output}"
   end
 end

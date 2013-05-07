@@ -19,38 +19,38 @@ describe Game do
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("rock", "paper").should == "computer wins"
+		@game.choose_winner("rock", "paper").should include "computer wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("rock", "scissors").should == "user wins"
+    @game.choose_winner("rock", "scissors").should include "user wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("rock", "rock").should == "noone wins"
+    @game.choose_winner("rock", "rock").should include "noone wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("paper", "scissors").should == "computer wins"
+    @game.choose_winner("paper", "scissors").should include "computer wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("paper", "rock").should == "user wins"
+    @game.choose_winner("paper", "rock").should include "user wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("paper", "paper").should == "noone wins"
+    @game.choose_winner("paper", "paper").should include "noone wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("scissors", "rock").should == "computer wins"
+    @game.choose_winner("scissors", "rock").should include "computer wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("scissors", "paper").should == "user wins"
+    @game.choose_winner("scissors", "paper").should include "user wins"
   end
 
   it "should return 'computer wins' if user guesses 'rock' and computer guesses 'paper'" do
-    @game.choose_winner("scissors", "scissors").should == "noone wins"
+    @game.choose_winner("scissors", "scissors").should include "noone wins"
   end
 end

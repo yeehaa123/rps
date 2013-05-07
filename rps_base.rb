@@ -1,14 +1,15 @@
 require 'sinatra'
-require 'rspec'
-require 'rack/test'
 require 'pry'
+require 'rack/test'
 require './rps_game'
 
 get '/' do
-  @title = "rock, paper, scissors"
+	@game = Game.new
   if params[:guess]
-		@game =  Game.new.start("#{params[:guess]}")
+		@game.start "#{params[:guess]}"
   else
+		Bla= Struct.new(:bla, :blabla)
+		@bla = Bla.new("Hello", "Hello")
     erb :home
   end
 end
@@ -18,13 +19,14 @@ __END__
 @@form
 
 @@home
-<h1>welcome to <%= @title %></h1>
+<h1>welcome to <%= @bla.bla %></h1>
+<h2>welcome to <%= @bla.blabla %></h1>
 
 @@layout
 <!doctype html>
 <html lang="en">
 <head>
-  <title><%= @title %></title>
+  <title><%= @game.title %></title>
   <meta charset="utf-8">
 </head>
 <body>
