@@ -1,6 +1,8 @@
 require 'spec_helper'
 require_relative '../rps_base'
 
+set :environment, :test
+
 describe 'Rock Paper Scissors App' do
   include Rack::Test::Methods
 
@@ -13,28 +15,4 @@ describe 'Rock Paper Scissors App' do
     last_response.should be_ok
     last_response.body.should include "welcome to rock, paper, scissors"
   end
-
-  it "when I say Rock it should respond with scissors" do
-    get '/', guess: "Rock"
-    last_response.body.should include "Scissors"
-  end
 end
-
-__END__
-
-@@form
-
-@@home
-<h1>welcome to <%= @title %></h1>
-
-@@layout
-<!doctype html>
-<html lang="en">
-<head>
-  <title><%= @title %></title>
-  <meta charset="utf-8">
-</head>
-<body>
-  <%= yield %>
-</body>
-</html>
